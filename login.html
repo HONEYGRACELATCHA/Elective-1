@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: rgb(255, 255, 255);
+            color: #161515; 
+        }
+
+        .login-container {
+            background: rgba(202, 199, 199, 0.9); 
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            width: 320px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #1f1e1e; 
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333; 
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc; 
+            border-radius: 5px;
+            background: #f9f9f9; 
+            color: #333; 
+        }
+
+        input:focus {
+            border-color: #abb617; 
+            outline: none;
+            background: #fff;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #181717; 
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #e04e30; 
+        }
+
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+
+        .logo {
+            width: 80px;
+            margin-bottom: 20px;
+        }
+
+        ::placeholder {
+            color: #aaa; 
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <img src="c:\Users\Hp\OneDrive\Pictures\Scoolpurpose\download.jfif" alt="Logo" class="logo">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+            <button type="submit">Login</button>
+            <p id="error-message" class="error"></p>
+
+            <!-- Link to sign up page -->
+            <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            
+            const userData = localStorage.getItem(username);
+            
+            if (userData) {
+                const user = JSON.parse(userData);
+
+                
+                if (user.password === password) {
+                    alert('Login successful!');
+                    
+                    console.log('User Info:', user);  
+                
+                    
+                    window.location.href = 'index.html'; 
+                } else {
+                    document.getElementById('error-message').textContent = 'Invalid username or password.';
+                }
+            } else {
+                document.getElementById('error-message').textContent = 'Invalid username or password.';
+            }
+        });
+    </script>
+</body>
+</html>

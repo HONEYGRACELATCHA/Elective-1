@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background:  rgb(255, 255, 255); 
+            color: #fff; 
+        }
+
+        .signup-container {
+            background: rgba(255, 255, 255, 0.9); 
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            width: 320px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #1f1d1d; 
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #0f0f0f; 
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc; 
+            border-radius: 5px;
+            background: #f9f9f9; 
+            color: #333; 
+        }
+
+        input:focus, select:focus {
+            border-color: #FF5733; 
+            outline: none;
+            background: #fff; 
+        }
+
+        button {
+            padding: 10px;
+            background-color: #1f1e1e; 
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #e04e30; 
+        }
+
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+
+        .logo {
+            width: 80px; 
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <img src="c:\Users\Hp\Downloads\Untitled_logo_1_free-file.jpg" alt="Logo" class="logo">
+        <h2>Sign Up</h2>
+        <form id="signupForm">
+            <label for="username">Username:</label>
+            <input type="text" id="newUsername" name="newUsername" placeholder="Enter your username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="newPassword" name="newPassword" placeholder="Enter your password" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+            
+
+            <button type="submit">Sign Up</button>
+            <p id="error-message" class="error"></p>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            const username = document.getElementById('newUsername').value;
+            const password = document.getElementById('newPassword').value;
+            const phone = document.getElementById('phone').value;
+            const sex = document.getElementById('sex').value;
+
+            
+            if (localStorage.getItem(username)) {
+                document.getElementById('error-message').textContent = 'Username already exists. Please choose another.';
+                return;
+            }
+
+            // Simulate saving the new user (in real world, this would be done in a database)
+            const user = {
+                username: username,
+                password: password,
+                phone: phone,
+                sex: sex
+            };
+
+            // Save the user data (you can store all the info as a JSON object)
+            localStorage.setItem(username, JSON.stringify(user));
+
+            // Display success message
+            alert('Account created successfully! You can now log in.');
+            // Redirect back to login page after sign up
+            window.location.href = 'login.html'; 
+        });
+    </script>
+</body>
+</html>
